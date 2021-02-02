@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.smhrd.mybatis.MemberMapper">
+    <select id="memberList" resultType="MemberVO">
+        SELECT * FROM memiot 
+        ORDER BY NUM DESC
+    </select>
+    <insert id="memberInsert" parameterType="MemberVO">
+         INSERT INTO memiot 
+         VALUES 
+         (num_seq.nextval, #{id}, #{pass}, #{mname}, #{mage}, #{memail}, #{mtel})
+    </insert>
+    <delete id="memberDelete" parameterType="Integer">
+         DELETE FROM memiot 
+         WHERE 
+         num=#{num}
+    </delete>
+    <select id="memberContent" resultType="MemberVO" parameterType="Integer">
+        SELECT * FROM memiot 
+        WHERE
+        num=#{num}
+    </select>
+    <update id="memberUpdate" parameterType="MemberVO">
+         UPDATE memiot 
+         SET 
+         mage=#{mage}, memail=#{memail}, mtel=#{mtel}
+         WHERE 
+         num=#{num}
+    </update>
+    
+</mapper>
